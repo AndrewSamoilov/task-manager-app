@@ -7,18 +7,19 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Date;
+import java.util.Collections;
 import java.util.List;
 
-@Table(name = "categories")
+@Table(name = "category")
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class Category {
+public class Category extends DateStatistic {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "category_id_seq")
+    @SequenceGenerator(name = "category_id_seq", sequenceName = "category_id_seq", allocationSize = 1)
     @Column(name = "id")
     private Long id;
 
@@ -26,16 +27,10 @@ public class Category {
     @JsonProperty("title")
     private String name;
 
-    @Column(name = "notes")
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "category", cascade = CascadeType.REMOVE)
-    private List<Note> notes;
+    @OneToMany(mappedBy = "category")
+    private List<Note> notes = Collections.emptyList();
 
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "created_date")
-    @JsonIgnore
-    private Date createdDate;
-
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "user_id")
     @JsonIgnore
     private User user;

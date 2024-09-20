@@ -1,0 +1,13 @@
+spring:
+  datasource:
+    username: postgres
+    password: postgres
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/postgres
+    hikari:
+      schema: task_manager_app_schema
+
+  jpa:
+    properties:
+      hibernate:
+        default_schema: ${spring.datasource.hikari.schema}
