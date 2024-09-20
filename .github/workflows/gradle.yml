@@ -43,6 +43,7 @@ jobs:
             # Comma-separated paths to directories containing main source files.
             #-Dsonar.sources= # optional, default is project base directory
             # Comma-separated paths to directories containing test source files.
+            -Dsonar.exclusions=src/test/**/*Test*.java,**/*Config.*,src/main/resources/**
             -Dsonar.tests=src
             -Dsonar.junit.reportPaths=build/test-results/test
             -Dsonar.coverage.jacoco.xmlReportPaths=build/jacoco/jacocoXml.xml
