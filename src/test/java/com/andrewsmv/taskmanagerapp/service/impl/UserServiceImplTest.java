@@ -32,5 +32,6 @@ class UserServiceImplTest {
         User user1 = userService.createUser(user);
 
         assertEquals(user, user1);
+        assertEquals(user.getEmail(), "1");
     }
 }
