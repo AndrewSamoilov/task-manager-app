@@ -1,7 +1,7 @@
 spring:
   datasource:
     username: postgres
-    password: y|WCr1Hod~!H]]EYs
+    password: postgres
     driver-class-name: org.postgresql.Driver
     url: jdbc:postgresql://localhost:5432/postgres
     hikari:
