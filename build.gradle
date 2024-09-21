@@ -26,6 +26,13 @@ jacocoTestReport {
         csv.required = true
         html.outputLocation = layout.buildDirectory.dir('jacocoHtml')
     }
+    afterEvaluate {
+        classDirectories.setFrom(files(classDirectories.files.collect {
+            fileTree(dir: it, exclude: [
+                    "com/**/TaskManagerAppApplication.class"
+            ])
+        }))
+    }
 }
 test {
     testLogging {
