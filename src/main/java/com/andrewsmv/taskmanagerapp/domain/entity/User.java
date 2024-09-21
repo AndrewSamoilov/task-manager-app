@@ -7,7 +7,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Collections;
 import java.util.List;
 
 @Entity
@@ -28,5 +27,5 @@ public class User extends DateStatistic {
     private String email;
 
     @OneToMany(mappedBy = "user")
-    private List<Category> categories = Collections.emptyList();
+    private List<Category> categories;
 }

@@ -2,6 +2,7 @@ package com.andrewsmv.taskmanagerapp.service.impl;
 
 import com.andrewsmv.taskmanagerapp.domain.entity.User;
 import com.andrewsmv.taskmanagerapp.repository.UserRepository;
+import com.andrewsmv.taskmanagerapp.testutils.TestUser;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -9,6 +10,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
@@ -22,15 +24,13 @@ class UserServiceImplTest {
 
     @Test
     void createUser() {
+        User expected = TestUser.getUser();
+        when(userRepository.save(expected))
+                .thenReturn(expected);
 
-        User user = new User();
-        user.setEmail("email@email.com");
+        User actual = userService.createUser(expected);
 
-        when(userRepository.save(user))
-                .thenReturn(user);
-
-        User user1 = userService.createUser(user);
-
-        assertEquals(user, user1);
+        assertEquals(expected, actual);
+        verify(userRepository).save(expected);
     }
 }
