@@ -23,12 +23,12 @@ class UserServiceImplTest {
     private UserServiceImpl userService;
 
     @Test
-    void createUser() {
+    void create() {
         User expected = TestUser.getUser();
         when(userRepository.save(expected))
                 .thenReturn(expected);
 
-        User actual = userService.createUser(expected);
+        User actual = userService.create(expected);
 
         assertEquals(expected, actual);
         verify(userRepository).save(expected);

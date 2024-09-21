@@ -16,9 +16,16 @@ public class UserController {
     private final UserMapper userMapper;
     private final UserService userService;
 
+
+    @GetMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public UserDto getUser(@PathVariable Long id) {
+        return userMapper.toUserDto(userService.get(id));
+    }
+
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public UserDto createUser(@Valid @RequestBody UserDto userDto) {
-        return userMapper.toUserDto(userService.createUser(userMapper.toUser(userDto)));
+        return userMapper.toUserDto(userService.create(userMapper.toUser(userDto)));
     }
 }

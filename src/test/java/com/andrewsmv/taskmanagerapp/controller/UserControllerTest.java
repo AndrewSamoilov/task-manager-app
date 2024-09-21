@@ -34,13 +34,13 @@ class UserControllerTest {
         User user = new User();
         user.setEmail(Constants.EMAIL);
 
-        when(userService.createUser(user)).thenReturn(TestUser.getUser());
+        when(userService.create(user)).thenReturn(TestUser.getUser());
 
         mockMvc.perform(post("/api/users")
                         .content("{\"email\": \"test@gmail.com\"}\n")
                         .header("Content-Type", "application/json"))
                 .andExpect(status().isCreated());
 
-        verify(userService).createUser(user);
+        verify(userService).create(user);
     }
 }
