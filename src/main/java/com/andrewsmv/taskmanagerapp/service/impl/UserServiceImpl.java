@@ -5,6 +5,8 @@ import com.andrewsmv.taskmanagerapp.repository.UserRepository;
 import com.andrewsmv.taskmanagerapp.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 @Slf4j
@@ -24,5 +26,10 @@ public class UserServiceImpl implements UserService {
     public User get(Long id) {
         log.debug("Retrieving user {}", id);
         return userRepository.findById(id).orElseThrow();
+    }
+
+    @Override
+    public Page<User> getAll(Pageable pageable) {
+        return userRepository.findAll(pageable);
     }
 }

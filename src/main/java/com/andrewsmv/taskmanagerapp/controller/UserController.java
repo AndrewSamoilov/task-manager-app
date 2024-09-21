@@ -5,8 +5,11 @@ import com.andrewsmv.taskmanagerapp.domain.mapper.UserMapper;
 import com.andrewsmv.taskmanagerapp.service.UserService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+
 
 @RequestMapping("/api/users")
 @RestController
@@ -22,6 +25,15 @@ public class UserController {
     public UserDto getUser(@PathVariable Long id) {
         return userMapper.toUserDto(userService.get(id));
     }
+
+
+    @GetMapping
+    @ResponseStatus(HttpStatus.OK)
+    public Page<UserDto> getUsers(Pageable pageable) {
+        return userService.getAll(pageable)
+                .map(userMapper::toUserDto);
+    }
+
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
