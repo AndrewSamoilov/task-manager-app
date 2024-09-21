@@ -1,6 +1,8 @@
 # This config was automatically generated from your source code
 # Stacks detected: cicd:github-actions:.github/workflows,deps:java:.,tool:gradle:
 version: 2.1
+orbs:
+  browser-tools: circleci/browser-tools@1.2.3
 jobs:
   test-java:
     docker:
@@ -15,7 +17,7 @@ jobs:
       - restore_cache:
           key: cache-{{ checksum "/tmp/CIRCLECI_CACHE_KEY" }}
       - run:
-          command: ./gradlew test
+          command: ./gradlew clean test jacocoTestReport
       - store_test_results:
           path: build/test-results
       - save_cache:
