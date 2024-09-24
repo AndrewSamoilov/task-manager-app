@@ -1,5 +1,6 @@
 package com.andrewsmv.taskmanagerapp.service.impl;
 
+import com.andrewsmv.taskmanagerapp.common.Constants;
 import com.andrewsmv.taskmanagerapp.domain.entity.User;
 import com.andrewsmv.taskmanagerapp.repository.UserRepository;
 import com.andrewsmv.taskmanagerapp.service.UserService;
@@ -40,9 +41,11 @@ public class UserServiceImpl implements UserService {
 
     User userToUpdate = get(id);
 
-    BeanUtils.copyProperties(user, userToUpdate, "categories", "createdDate",
-        "lastModifiedDate");
+    BeanUtils.copyProperties(user, userToUpdate, Constants.ID,
+        Constants.CATEGORIES,
+        Constants.CREATED_DATE,
+        Constants.LAST_MODIFIED_DATE);
 
-    return userRepository.save(user);
+    return userRepository.save(userToUpdate);
   }
 }
