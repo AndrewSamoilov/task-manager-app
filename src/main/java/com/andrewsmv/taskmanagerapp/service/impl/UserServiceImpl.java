@@ -1,6 +1,7 @@
 package com.andrewsmv.taskmanagerapp.service.impl;
 
 import com.andrewsmv.taskmanagerapp.common.Constants;
+import com.andrewsmv.taskmanagerapp.common.exception.NotFoundException;
 import com.andrewsmv.taskmanagerapp.domain.entity.User;
 import com.andrewsmv.taskmanagerapp.repository.UserRepository;
 import com.andrewsmv.taskmanagerapp.service.UserService;
@@ -27,7 +28,7 @@ public class UserServiceImpl implements UserService {
   @Override
   public User get(Long id) {
     log.debug("Retrieving user {}", id);
-    return userRepository.findById(id).orElseThrow();
+    return userRepository.findById(id).orElseThrow(NotFoundException::new);
   }
 
   @Override
