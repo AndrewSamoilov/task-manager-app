@@ -1,0 +1,35 @@
+{
+  "content": [
+    {
+      "id": 1,
+      "email": "test@gmail.com",
+      "createdDate": "2024-09-21",
+      "lastModifiedDate": "2024-09-21"
+    }
+  ],
+  "pageable": {
+    "pageNumber": 0,
+    "pageSize": 1,
+    "sort": {
+      "empty": true,
+      "unsorted": true,
+      "sorted": false
+    },
+    "offset": 0,
+    "paged": true,
+    "unpaged": false
+  },
+  "last": true,
+  "totalPages": 1,
+  "totalElements": 1,
+  "first": true,
+  "size": 1,
+  "number": 0,
+  "sort": {
+    "empty": true,
+    "unsorted": true,
+    "sorted": false
+  },
+  "numberOfElements": 1,
+  "empty": false
+}
